@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()" style="width: 100%;" [formGroup]="formPesquisa">
+
+      <div class="ui-g-12">
+        <h1>Pesquisar Metas</h1>
+      </div>
+
+      <div class="ui-g-6 ui-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" formControlName="descricao">
+      </div>
+
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="metas" [responsive]="true"
+          emptyMessage="Nenhum lançamento encontrado" #tabela>
+        <p-column field="descricao" header="Descrição"></p-column>
+        <p-column field="valor" header="Valor"></p-column>
+        <p-column field="categoria.nome" header="Categoria"></p-column>
+        <p-column styleClass="col-acoes">
+          <ng-template let-data="rowData" pTemplate="body">
+            <a pButton icon="fa-pencil" pTooltip="Editar"
+              tooltipPosition="top"  [routerLink]="['/metas', data.codigo]"></a>
+            <button pButton icon="fa-trash" (click)="confirmarExclusao(data)"></button>
+          </ng-template>
+      </p-column>
+      </p-dataTable>
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton label="Nova Meta" routerLink="/metas/novo"></a>
+    </div>
+
+  </div>
+
+</div>

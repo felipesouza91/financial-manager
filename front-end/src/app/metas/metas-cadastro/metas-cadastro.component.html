@@ -1,0 +1,29 @@
+<div class="container">
+  <form (ngSubmit)="salvar()" [formGroup]="formCadastro">
+
+    <div class="ui-g" >
+      <div class="ui-g-12">
+        <h1>{{ editando ? 'Edição de' : 'Nova' }} Meta</h1>
+      </div>
+      <div class="ui-g-12 ui-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" formControlName="descricao">
+      </div>
+      <div class="ui-g-6 ui-fluid">
+        <label>Valor</label>
+        <input pInputText type="text"  placeholder="0,00" formControlName="valor"
+          currencyMask [options]="{ prefix: '', thousands: '.', decimal: ',', allowNegative: false }"
+         >
+      </div>
+      <div class="ui-g-12 ui-md-6 ui-fluid" formGroupName="categoria">
+        <label>Categoria</label>
+        <p-dropdown name="categoria" [options]="categorias" [autoWidth]="false"
+            placeholder="Selecione"  formControlName="codigo"></p-dropdown>
+      </div>
+      
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Salvar"></button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="ui-g">
+
+    <form autocomplete="off" (ngSubmit)="pesquisar()" [formGroup]="formPesquisa">
+
+      <div class="ui-g-12">
+        <h1>Categorias</h1>
+      </div>
+
+      <div class="ui-g-12 ui-fluid">
+        <label>Descrição</label>
+        <input pInputText type="text" formControlName="nome">
+      </div>
+      <div class="ui-g-12">
+        <button pButton type="submit" label="Pesquisar"></button>
+      </div>
+    </form>
+  </div>
+
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <p-dataTable [value]="categorias" [responsive]="true"
+          emptyMessage="Nenhum lançamento encontrado" #tabela>
+        <p-column field="nome" header="Descrição"></p-column>
+        <p-column styleClass="col-acoes">
+            <ng-template let-data="rowData" pTemplate="body">
+              <a pButton icon="fa-pencil" pTooltip="Editar"
+                tooltipPosition="top"  [routerLink]="['/categorias', data.codigo]"></a>
+              <button pButton icon="fa-trash" (click)="confirmarExclusao(data)"></button>
+            </ng-template>
+        </p-column>
+      </p-dataTable>
+    </div>
+
+    <div class="ui-g-12">
+      <a pButton label="Nova Categoria" routerLink="/categorias/novo"></a>
+    </div>
+
+  </div>
+
+</div>
